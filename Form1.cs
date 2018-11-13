@@ -1,76 +1,92 @@
 ﻿using System;
-using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 
 namespace StringBuilder
 {
-    public partial class Form1 : Form
+	public partial class Form1 : Form
     {
-        public Form1()
+		public Form1()
         {
             InitializeComponent();
         }
 
-        private void ClearGui()
+		private void Form1_Load(object sender, EventArgs e)
+		{
+			// windir
+			textBoxFolder.Text = Environment.GetEnvironmentVariable("userprofile");  
+		}
+
+		private bool PrepareGui()
         {
-            label1.Text = @"Execute timeout: ";
-            label2.Text = @"Fill timeout: ";
-            richTextBox1.Clear();
-        }
+            richTextBoxOut.Clear();
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ClearGui();
+			Utils.Dir = textBoxFolder.Text;
+			if (!Directory.Exists(Utils.Dir))
+			{
+				richTextBoxOut.AppendText(@"Error folder path!" + Environment.NewLine);
+				return false;
+			}
+			Utils.DirInfo = new DirectoryInfo(Utils.Dir);
 
-            var dtStart = DateTime.Now;
-            var max = Convert.ToInt64(numericUpDown1.Value);
-            var strNew = @"";
+			return true;
+		}
 
-            for (var i = 0; i < max; i++)
-            {
-                strNew += "0";
-            }
+		private void PrintResults()
+		{
+			richTextBoxOut.AppendText(@"Count of dirs: " + Convert.ToString(Utils.CountDirs) + Environment.NewLine);
+			richTextBoxOut.AppendText(@"Count of files: " + Convert.ToString(Utils.CountFiles) + Environment.NewLine);
+			richTextBoxOut.AppendText(@"Count of find files: " + Convert.ToString(Utils.CountFilesFind) + Environment.NewLine);
+			richTextBoxOut.AppendText(@"Execute timeout: " + Convert.ToString(DateTime.Now - Utils.DtStart) + Environment.NewLine);
+		}
 
-            label1.Text = @"Execute timeout: " + Convert.ToString(DateTime.Now - dtStart);
-            richTextBox1.Text = strNew;
-            label2.Text = @"Fill timeout: " + Convert.ToString(DateTime.Now - dtStart);
-        }
+		private void buttonChangeFolder_Click(object sender, EventArgs e)
+		{
+			using (var folderBrowserDialog = new FolderBrowserDialog() { })
+			{
+				DialogResult dialogResult = folderBrowserDialog.ShowDialog();
+				if (dialogResult == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
+				{
+					textBoxFolder.Text = folderBrowserDialog.SelectedPath;
+				}
+			}
+		}
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ClearGui();
+		private void buttonString_Click(object sender, EventArgs e)
+		{
+			if (!PrepareGui())
+				return;
 
-            var dtStart = DateTime.Now;
-            var max = Convert.ToInt64(numericUpDown1.Value);
-            var sb = new System.Text.StringBuilder();
+			var core = new ClassCore<string>(
+				ref richTextBoxOut,
+				checkBoxUseIncludeFolders.Checked, checkBoxCountNames.Checked, textBoxFindName.Text);
 
-            for (var i = 0; i < max; i++)
-            {
-                sb.Append("0");
-            }
+			PrintResults();
+		}
 
-            label1.Text = @"Execute timeout: " + Convert.ToString(DateTime.Now - dtStart);
-            richTextBox1.Text = sb.ToString();
-            label2.Text = @"Fill timeout: " + Convert.ToString(DateTime.Now - dtStart);
-        }
+		private void buttonStringBuilder_Click(object sender, EventArgs e)
+		{
+			if (!PrepareGui())
+				return;
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ClearGui();
+			var core = new ClassCore<System.Text.StringBuilder>(
+				ref richTextBoxOut,
+				checkBoxUseIncludeFolders.Checked, checkBoxCountNames.Checked, textBoxFindName.Text);
 
-            var ruRu = CultureInfo.CreateSpecificCulture("ru-RU");
-            var dtStart = DateTime.Now;
-            var max = Convert.ToInt64(numericUpDown1.Value);
-            var sb = new System.Text.StringBuilder();
+			PrintResults();
+		}
 
-            for (var i = 0; i < max; i++)
-            {
-                sb.AppendFormat(ruRu, "Date and Time: {0:d} at {0:t}" + Environment.NewLine, DateTime.Now);
-            }
+		private void buttonWithCollection_Click(object sender, EventArgs e)
+		{
+			if (!PrepareGui())
+				return;
 
-            label1.Text = @"Execute timeout: " + Convert.ToString(DateTime.Now - dtStart);
-            richTextBox1.Text = sb.ToString();
-            label2.Text = @"Fill timeout: " + Convert.ToString(DateTime.Now - dtStart);
-        }
-    }
+			var core = new ClassCore<System.Collections.ObjectModel.Collection<string>>(
+				ref richTextBoxOut,
+				checkBoxUseIncludeFolders.Checked, checkBoxCountNames.Checked, textBoxFindName.Text);
+
+			PrintResults();
+		}
+
+	}
 }

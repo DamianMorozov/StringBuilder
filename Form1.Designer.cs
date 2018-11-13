@@ -28,130 +28,158 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 38);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 75);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Create string without stringbuilder";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(12, 119);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 75);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Create string with stringbuilder";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.richTextBox1.Location = new System.Drawing.Point(93, 12);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(519, 407);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(12, 12);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(75, 20);
-            this.numericUpDown1.TabIndex = 3;
-            this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            200000,
-            0,
-            0,
-            0});
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.buttonString = new System.Windows.Forms.Button();
+			this.buttonStringBuilder = new System.Windows.Forms.Button();
+			this.richTextBoxOut = new System.Windows.Forms.RichTextBox();
+			this.buttonWithCollection = new System.Windows.Forms.Button();
+			this.textBoxFolder = new System.Windows.Forms.TextBox();
+			this.buttonChangeFolder = new System.Windows.Forms.Button();
+			this.checkBoxUseIncludeFolders = new System.Windows.Forms.CheckBox();
+			this.textBoxFindName = new System.Windows.Forms.TextBox();
+			this.checkBoxCountNames = new System.Windows.Forms.CheckBox();
+			this.SuspendLayout();
+			// 
+			// buttonString
+			// 
+			this.buttonString.Location = new System.Drawing.Point(10, 90);
+			this.buttonString.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.buttonString.Name = "buttonString";
+			this.buttonString.Size = new System.Drawing.Size(300, 29);
+			this.buttonString.TabIndex = 10;
+			this.buttonString.Text = "Read files to string";
+			this.buttonString.UseVisualStyleBackColor = true;
+			this.buttonString.Click += new System.EventHandler(this.buttonString_Click);
+			// 
+			// buttonStringBuilder
+			// 
+			this.buttonStringBuilder.Location = new System.Drawing.Point(355, 90);
+			this.buttonStringBuilder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.buttonStringBuilder.Name = "buttonStringBuilder";
+			this.buttonStringBuilder.Size = new System.Drawing.Size(300, 29);
+			this.buttonStringBuilder.TabIndex = 11;
+			this.buttonStringBuilder.Text = "Read files to StringBuilder";
+			this.buttonStringBuilder.UseVisualStyleBackColor = true;
+			this.buttonStringBuilder.Click += new System.EventHandler(this.buttonStringBuilder_Click);
+			// 
+			// richTextBoxOut
+			// 
+			this.richTextBoxOut.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Location = new System.Drawing.Point(0, 422);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(312, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Execute timeout: ";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(12, 200);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 75);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Create string with stringbuilder and format";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.richTextBoxOut.BackColor = System.Drawing.SystemColors.Control;
+			this.richTextBoxOut.Location = new System.Drawing.Point(10, 125);
+			this.richTextBoxOut.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.richTextBoxOut.Name = "richTextBoxOut";
+			this.richTextBoxOut.ReadOnly = true;
+			this.richTextBoxOut.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+			this.richTextBoxOut.Size = new System.Drawing.Size(984, 125);
+			this.richTextBoxOut.TabIndex = 20;
+			this.richTextBoxOut.Text = "";
+			// 
+			// buttonWithCollection
+			// 
+			this.buttonWithCollection.Location = new System.Drawing.Point(694, 90);
+			this.buttonWithCollection.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.buttonWithCollection.Name = "buttonWithCollection";
+			this.buttonWithCollection.Size = new System.Drawing.Size(300, 29);
+			this.buttonWithCollection.TabIndex = 12;
+			this.buttonWithCollection.Text = "Read files to Collection<string>";
+			this.buttonWithCollection.UseVisualStyleBackColor = true;
+			this.buttonWithCollection.Click += new System.EventHandler(this.buttonWithCollection_Click);
+			// 
+			// textBoxFolder
+			// 
+			this.textBoxFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Location = new System.Drawing.Point(312, 422);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(312, 20);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Fill timeout: ";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 442);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "StringBuilder";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.ResumeLayout(false);
+			this.textBoxFolder.Location = new System.Drawing.Point(10, 50);
+			this.textBoxFolder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.textBoxFolder.Name = "textBoxFolder";
+			this.textBoxFolder.Size = new System.Drawing.Size(984, 27);
+			this.textBoxFolder.TabIndex = 4;
+			// 
+			// buttonChangeFolder
+			// 
+			this.buttonChangeFolder.Location = new System.Drawing.Point(10, 10);
+			this.buttonChangeFolder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.buttonChangeFolder.Name = "buttonChangeFolder";
+			this.buttonChangeFolder.Size = new System.Drawing.Size(99, 29);
+			this.buttonChangeFolder.TabIndex = 0;
+			this.buttonChangeFolder.Text = "Set folder";
+			this.buttonChangeFolder.UseVisualStyleBackColor = true;
+			this.buttonChangeFolder.Click += new System.EventHandler(this.buttonChangeFolder_Click);
+			// 
+			// checkBoxUseIncludeFolders
+			// 
+			this.checkBoxUseIncludeFolders.AutoSize = true;
+			this.checkBoxUseIncludeFolders.Location = new System.Drawing.Point(120, 15);
+			this.checkBoxUseIncludeFolders.Name = "checkBoxUseIncludeFolders";
+			this.checkBoxUseIncludeFolders.Size = new System.Drawing.Size(124, 23);
+			this.checkBoxUseIncludeFolders.TabIndex = 1;
+			this.checkBoxUseIncludeFolders.Text = "Include folders";
+			this.checkBoxUseIncludeFolders.UseVisualStyleBackColor = true;
+			// 
+			// textBoxFindName
+			// 
+			this.textBoxFindName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBoxFindName.Location = new System.Drawing.Point(380, 12);
+			this.textBoxFindName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.textBoxFindName.Name = "textBoxFindName";
+			this.textBoxFindName.Size = new System.Drawing.Size(614, 27);
+			this.textBoxFindName.TabIndex = 3;
+			this.textBoxFindName.Text = "png";
+			// 
+			// checkBoxCountNames
+			// 
+			this.checkBoxCountNames.AutoSize = true;
+			this.checkBoxCountNames.Checked = true;
+			this.checkBoxCountNames.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBoxCountNames.Location = new System.Drawing.Point(250, 15);
+			this.checkBoxCountNames.Name = "checkBoxCountNames";
+			this.checkBoxCountNames.Size = new System.Drawing.Size(126, 23);
+			this.checkBoxCountNames.TabIndex = 2;
+			this.checkBoxCountNames.Text = "Find file names";
+			this.checkBoxCountNames.UseVisualStyleBackColor = true;
+			// 
+			// Form1
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(1008, 261);
+			this.Controls.Add(this.checkBoxCountNames);
+			this.Controls.Add(this.textBoxFindName);
+			this.Controls.Add(this.checkBoxUseIncludeFolders);
+			this.Controls.Add(this.buttonChangeFolder);
+			this.Controls.Add(this.textBoxFolder);
+			this.Controls.Add(this.buttonWithCollection);
+			this.Controls.Add(this.richTextBoxOut);
+			this.Controls.Add(this.buttonStringBuilder);
+			this.Controls.Add(this.buttonString);
+			this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.MaximumSize = new System.Drawing.Size(1024, 1300);
+			this.MinimizeBox = false;
+			this.MinimumSize = new System.Drawing.Size(1024, 0);
+			this.Name = "Form1";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "String, StringBuilder, Collection<String>";
+			this.Load += new System.EventHandler(this.Form1_Load);
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label2;
-    }
+        private System.Windows.Forms.Button buttonString;
+        private System.Windows.Forms.Button buttonStringBuilder;
+        private System.Windows.Forms.RichTextBox richTextBoxOut;
+		private System.Windows.Forms.Button buttonWithCollection;
+		private System.Windows.Forms.TextBox textBoxFolder;
+		private System.Windows.Forms.Button buttonChangeFolder;
+		private System.Windows.Forms.CheckBox checkBoxUseIncludeFolders;
+		private System.Windows.Forms.TextBox textBoxFindName;
+		private System.Windows.Forms.CheckBox checkBoxCountNames;
+	}
 }
 
